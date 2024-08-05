@@ -3,7 +3,7 @@ import { getUserMeLoader } from "@/data/services/get-user-me-loader";
 import { Logo } from "@/components/custom/Logo";
 import { Button } from "@/components/ui/button";
 import { LogoutButton } from "@/components/custom/LogoutButton";
-// import { SummaryForm } from "@/components/forms/SummaryForm";
+import { AccountMenu } from "./account-menu";
 
 interface AuthUserProps {
   username: string;
@@ -53,7 +53,7 @@ export async function Header({ data }: Readonly<HeaderProps>) {
       {/* {user.ok && <SummaryForm />} */}
       <div className="flex items-center gap-4">
         {user.ok ? (
-          <LoggedInUser userData={user.data} />
+          <AccountMenu userData={user.data} />
         ) : (
           <Link href={ctaButton.url}>
             <Button>{ctaButton.text}</Button>
