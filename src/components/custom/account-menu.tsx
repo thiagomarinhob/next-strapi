@@ -21,7 +21,7 @@ export function AccountMenu({ userData }: any) {
           variant="outline"
           className="flex select-none items-center gap-2"
         >
-          {userData.establishment.name}
+          {userData.establishment ? userData.establishment.name.name : userData.username}
           <ChevronDown />
         </Button>
       </DropdownMenuTrigger>

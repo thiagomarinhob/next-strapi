@@ -36,7 +36,7 @@ export default async function Products() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {products.map((product: any) => {
+                {products && products.map((product: any) => {
                   return <OrderTableRow key={product.id} product={product} />
                 })}
               </TableBody>
