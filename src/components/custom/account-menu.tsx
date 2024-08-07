@@ -13,7 +13,6 @@ import {
 import { LogoutButton } from './LogoutButton'
 
 export function AccountMenu({ userData }: any) {
-  console.log("🚀 ~ AccountMenu ~ AccountMenu:", userData)
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -21,7 +20,7 @@ export function AccountMenu({ userData }: any) {
           variant="outline"
           className="flex select-none items-center gap-2"
         >
-          {userData.establishment ? userData.establishment.name.name : userData.username}
+          {userData.establishment ? userData.establishment.name : userData.username}
           <ChevronDown />
         </Button>
       </DropdownMenuTrigger>

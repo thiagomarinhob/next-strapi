@@ -18,7 +18,7 @@ export default async function Products() {
 
   return (
     <>
-      <div className="flex flex-col gap-4 bg-gray-50 p-4">
+      <div className="flex flex-col gap-4 p-4">
         <h1 className="text-3xl font-bold tracking-tight">Produtos</h1>
         <div className="space-y-2.5">
           <OrderTableFilters />
@@ -27,12 +27,14 @@ export default async function Products() {
             <Table>
               <TableHeader>
                 <TableRow>
+                  <TableHead className="w-[50px]"></TableHead>
                   <TableHead className="w-[64px]"></TableHead>
-                  <TableHead className="w-[140px]">Identificador</TableHead>
                   <TableHead className="w-[180px]">Nome</TableHead>
-                  <TableHead>Descricão</TableHead>
-                  <TableHead className="w-[140px]">preco</TableHead>
                   <TableHead className="w-[140px]">Status</TableHead>
+                  <TableHead className="w-[140px]">Categoria</TableHead>
+                  <TableHead className="w-[200px]">Descrição</TableHead>
+                  <TableHead className="w-[140px]">preço</TableHead>
+                  <TableHead className="w-[64px]">Ações</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

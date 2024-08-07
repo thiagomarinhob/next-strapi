@@ -6,6 +6,9 @@ const baseUrl = getStrapiURL();
 
 const query = qs.stringify({
   populate: {
+    image: {
+      fields: ["url", "alternativeText"],
+    },
     category: {
       populate: true
     }
@@ -34,4 +37,27 @@ export async function getProductAll() {
     console.error("🚀 ~ getProductAll ~ error:", error)
     throw error;
   }
+}
+
+export async function deleteProductById(id: number) {
+  const authToken = await getAuthToken();
+  const url = new URL(`/api/products/${id}`, baseUrl);
+
+  const headers = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${authToken}`,
+    },
+  };
+
+  try {
+    const response = await fetch(url.href, headers);
+    console.log("🚀 ~ deleteProduct ~ response:", response)
+    
+  } catch (error) {
+    console.error("🚀 ~ deleteProduct ~ error:", error)
+    throw error;
+  }
+
 }

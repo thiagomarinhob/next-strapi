@@ -21,15 +21,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const globaldata = await getGlobalPageData()
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header data={globaldata.header} />
         <div>
           {children}
         </div>
-        <Footer data={globaldata.footer} />
       </body>
     </html>
   );
