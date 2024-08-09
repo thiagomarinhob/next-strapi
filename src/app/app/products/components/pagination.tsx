@@ -26,7 +26,7 @@ export function Pagination({
       </span>
       <div className="flex items-center gap-6 lg:gap-8">
         <div className="text-sm font-medium">
-          Página {pageIndex + 1} de {pages}
+          Página {pageIndex} de {pages}
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" className="h-8 w-8 p-0">

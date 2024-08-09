@@ -6,9 +6,14 @@ import { StrapiImage } from "@/components/custom/StrapiImage"
 export default async function Carapio({ params }: any) {
   const response = await getCategoryByEstablishment(params.username)
 
-  if (response.data.length === 0) return <div>Restaurante não encontrado</div>
+  if (response.data && response.data.length === 0) {
+    return (
+      <div>Restaurante não encontrado</div>
+    )
+  }
 
   const categories = response.data
+  console.log("🚀 ~ Carapio ~ categories:", categories)
 
   return (
     <main className="flex flex-col w-full p-5 items-center bg-gray-100">

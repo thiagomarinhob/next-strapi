@@ -1,22 +1,36 @@
 import { flattenAttributes, getStrapiURL } from "@/lib/utils";
 import { getAuthToken } from "../services/get-token";
 import qs from 'qs';
+import { getUserMeLoader } from "../services/get-user-me-loader";
 
 const baseUrl = getStrapiURL();
 
-const query = qs.stringify({
-  populate: {
-    image: {
-      fields: ["url", "alternativeText"],
-    },
-    category: {
-      populate: true
-    }
-  },
-});
-
 export async function getProductAll() {
   const authToken = await getAuthToken();
+  const user = await getUserMeLoader()
+
+  const query = qs.stringify({
+    filter: {
+      establishment: {
+        id: {
+          $eq: user.data.establishment.id,
+        },
+      },
+    },
+    populate: {
+      image: {
+        fields: ["url", "alternativeText"],
+      },
+      category: {
+        populate: true
+      }
+    },
+    paginnation: {
+      page: 1,
+      pageSize: 10,
+      withCount: true,
+    }
+  });
 
   const url = new URL("/api/products", baseUrl);
   url.search = query

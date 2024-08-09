@@ -122,7 +122,7 @@ export async function loginUserAction(prevState: any, formData: FormData) {
   }
 
   cookies().set("jwt", responseData.jwt);
-  redirect("/dashboard");
+  redirect("/app/dashboard");
 }
 
 export async function logoutAction() {
