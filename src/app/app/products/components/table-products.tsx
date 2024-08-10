@@ -16,13 +16,12 @@ interface PageProps {
   total: number
 }
 
-export async function getProducts() {
-  const teste = await fetch('http://localhost:3000/api/products', {
-      method: 'GET'
-  })
+// export async function getProducts() {
+//   const teste = await fetch('/api/products')
   
-  return teste
-}
+//   console.log("🚀 ~ getProducts ~ teste:", teste)
+//   return teste
+// }
 
 export default async function TableProducts() {
   // const [products, setProducts] = useState([]);
@@ -31,15 +30,10 @@ export default async function TableProducts() {
   //   pageSize: 1,
   //   total: 0
   // });
-
-   const teste = await fetch('http://localhost:3000/api/products', {
-      method: "GET"
-  })
   
-  console.log("🚀 ~ getProducts ~ teste:", teste)
 
-const a = await getProducts()
-console.log("🚀 ~ TableProducts ~ a:", a)
+// const a = getProducts()
+// console.log("🚀 ~ TableProducts ~ a:", a)
 
 
   // useEffect(() => {

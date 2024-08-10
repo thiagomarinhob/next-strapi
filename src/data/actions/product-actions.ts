@@ -5,7 +5,7 @@ import { getUserMeLoader } from "../services/get-user-me-loader";
 
 const baseUrl = getStrapiURL();
 
-export async function getProductAll() {
+export async function getProductAll(filters = {}, page = 1, pageSize = 10) {
   const authToken = await getAuthToken();
   const user = await getUserMeLoader()
 
@@ -26,8 +26,8 @@ export async function getProductAll() {
       }
     },
     paginnation: {
-      page: 1,
-      pageSize: 10,
+      page,
+      pageSize,
       withCount: true,
     }
   });
@@ -36,15 +36,15 @@ export async function getProductAll() {
   url.search = query
   
   const headers = {
-    method: "GET",
-    headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${authToken}`,
-    },
   };
 
   try {
-    const response = await fetch(url.href, headers);
+    const response = await fetch(url.href, {
+      method: 'GET',
+      headers: headers
+    });
     const data = await response.json();
     return flattenAttributes(data);
   } catch (error) {

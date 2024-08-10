@@ -7,8 +7,8 @@ export async function DELETE(request: Request, response: Response) {
   try {
     await deleteProductById(id);
     return new Response('Success!', {
-    status: 200,
-  })
+      status: 200,
+    })
   } catch (error) {
     return new Response(`Erro ao deletar product ${error}`, {
       status: 400
@@ -16,14 +16,13 @@ export async function DELETE(request: Request, response: Response) {
   }
 }
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
-    const response = await getProductAll()
-    console.log("🚀 ~ GET ~ response:", response)
-    return Response.json(response)
+    const response = await getProductAll();
+    console.log("🚀 ~ GET ~ response:", response);
+    return Response.json(response);
   } catch (error) {
-    return new Response(`Erro ao deletar product ${error}`, {
-      status: 400
-    })
+    console.error("🚀 ~ GET ~ error:", error);
+    return Response.error();
   }
 }
