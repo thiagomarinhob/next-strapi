@@ -8,7 +8,7 @@ export function ButtonsActions(id: any) {
   const [open, setOpen] = useState(false);
 
   async function handleDeleteProduct(id: any) {
-    const response = await fetch('/api/products', {
+    const response = await fetch('/api/products/delete', {
       method: "DELETE",
       body: JSON.stringify(id)
     })

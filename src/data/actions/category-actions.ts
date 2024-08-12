@@ -42,6 +42,7 @@ export default async function getAllCategory(name?: string) {
 
   try {
     const response = await fetch(url.href, headers);
+    console.log("🚀 ~ getAllCategory ~ response:", response)
     const data = await response.json();
     return flattenAttributes(data);
   } catch (error) {

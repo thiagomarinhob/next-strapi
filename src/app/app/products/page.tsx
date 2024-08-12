@@ -12,10 +12,21 @@ import { Pagination } from './components/pagination'
 import { OrderTableFilters } from './components/order-table-filters';
 import { OrderTableRow } from './components/order-table-row';
 
-export default async function Products() {  
-  const response = await getProductAll();
-  const products = response.data;
-  const pagination = response.meta
+async function getProducts() {
+  const url = new URL('/api/products/getAll', 'http://localhost:3001')
+  
+  const response = await fetch(url)
+  console.log("🚀 ~ getProducts ~ response:", await response.json())
+
+  const resp = await response.json()
+  console.log("🚀 ~ getProducts ~ resp:", resp)
+  
+  return resp
+}
+
+export default async function Products() {
+  const res = await getProducts()
+  console.log("🚀 ~ Products ~ res:", res)
 
   return (
     <>
@@ -39,14 +50,14 @@ export default async function Products() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {products && products.map((product: any) => {
+                {/* {products && products.map((product: any) => {
                   return <OrderTableRow key={product.id} product={product} />
-                })}
+                })} */}
               </TableBody>
             </Table>
           </div>
 
-          <Pagination pageIndex={pagination.page} totalCount={pagination.total} perPage={pagination.pageSize} />
+          {/* <Pagination pageIndex={pagination.page} totalCount={pagination.total} perPage={pagination.pageSize} /> */}
         </div>
       </div>
     </>

@@ -9,6 +9,7 @@ export async function getProductAll(filters = {}, page = 1, pageSize = 10) {
   const authToken = await getAuthToken();
   const user = await getUserMeLoader()
 
+  // erro ta aqui não vem o user
   const query = qs.stringify({
     filter: {
       establishment: {
@@ -46,9 +47,10 @@ export async function getProductAll(filters = {}, page = 1, pageSize = 10) {
       headers: headers
     });
     const data = await response.json();
+    console.log("🚀 ~ getProductAll ~ data:", data)
     return flattenAttributes(data);
   } catch (error) {
-    console.error("🚀 ~ getProductAll ~ error:", error)
+    console.log("🚀 ~ getProductAll ~ error:", error)
     throw error;
   }
 }

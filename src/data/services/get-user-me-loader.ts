@@ -14,12 +14,13 @@ const query = qs.stringify({
 });
 
 export async function getUserMeLoader() {
+  const authToken = await getAuthToken();
   const baseUrl = getStrapiURL();
 
   const url = new URL("/api/users/me", baseUrl);
   url.search = query;
 
-  const authToken = await getAuthToken();
+  console.log("🚀 ~ getUserMeLoader ~ authToken:", authToken)
   if (!authToken) return { ok: false, data: null, error: null };
 
   try {
@@ -29,10 +30,11 @@ export async function getUserMeLoader() {
         "Content-Type": "application/json",
         Authorization: `Bearer ${authToken}`,
       },
-      cache: "no-cache",
+      // cache: "no-cache",
     });
     const data = await response.json();
-    if (data.error) return { ok: false, data: null, error: data.error };
+    console.log("🚀 ~ getUserMeLoader ~ data:", data)
+    if (data.error) {return { ok: false, data: null, error: data.error };}
     return { ok: true, data: data, error: null };
   } catch (error) {
     console.error(error);
