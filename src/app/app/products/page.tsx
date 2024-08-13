@@ -13,20 +13,16 @@ import { OrderTableFilters } from './components/order-table-filters';
 import { OrderTableRow } from './components/order-table-row';
 
 async function getProducts() {
-  const url = new URL('/api/products/getAll', 'http://localhost:3001')
-  
+  const url = new URL('/api/products/getAll', 'http://localhost:3000')
   const response = await fetch(url)
-  console.log("🚀 ~ getProducts ~ response:", await response.json())
 
-  const resp = await response.json()
-  console.log("🚀 ~ getProducts ~ resp:", resp)
+  const resp = await response
   
   return resp
 }
 
 export default async function Products() {
   const res = await getProducts()
-  console.log("🚀 ~ Products ~ res:", res)
 
   return (
     <>

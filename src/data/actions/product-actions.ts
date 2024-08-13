@@ -14,7 +14,7 @@ export async function getProductAll(filters = {}, page = 1, pageSize = 10) {
     filter: {
       establishment: {
         id: {
-          $eq: user.data.establishment.id,
+          $eq: user ? user.data.establishment.id : '',
         },
       },
     },
@@ -47,7 +47,6 @@ export async function getProductAll(filters = {}, page = 1, pageSize = 10) {
       headers: headers
     });
     const data = await response.json();
-    console.log("🚀 ~ getProductAll ~ data:", data)
     return flattenAttributes(data);
   } catch (error) {
     console.log("🚀 ~ getProductAll ~ error:", error)
