@@ -68,7 +68,6 @@ export async function deleteProductById(id: number) {
 
   try {
     const response = await fetch(url.href, headers);
-    console.log("🚀 ~ deleteProduct ~ response:", response)
     
   } catch (error) {
     console.error("🚀 ~ deleteProduct ~ error:", error)

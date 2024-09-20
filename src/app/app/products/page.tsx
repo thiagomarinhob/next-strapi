@@ -13,7 +13,7 @@ import { OrderTableFilters } from './components/order-table-filters';
 import { OrderTableRow } from './components/order-table-row';
 
 async function getProducts() {
-  const url = new URL('/api/products/getAll', 'http://localhost:3000')
+  const url = new URL('/api/products', 'http://localhost:3000')
   const response = await fetch(url)
 
   const resp = await response

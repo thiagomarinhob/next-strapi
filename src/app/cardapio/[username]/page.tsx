@@ -13,7 +13,6 @@ export default async function Carapio({ params }: any) {
   }
 
   const categories = response.data
-  console.log("🚀 ~ Carapio ~ categories:", categories)
 
   return (
     <main className="flex flex-col w-full p-5 items-center bg-gray-100">
