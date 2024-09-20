@@ -1,6 +1,4 @@
-
-import { getProductAll } from '@/data/actions/product-actions';
-import TableProducts from './components/table-products';
+// import { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -8,27 +6,42 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Pagination } from './components/pagination'
-import { OrderTableFilters } from './components/order-table-filters';
-import { OrderTableRow } from './components/order-table-row';
+import { Pagination } from './pagination'
+import { OrderTableFilters } from './order-table-filters';
+import { OrderTableRow } from './order-table-row';
 
-async function getProducts() {
-  const url = new URL('/api/products', 'http://localhost:3000')
-  const response = await fetch(url)
-
-  const resp = await response
-  
-  return resp
+interface PageProps {
+  page: number
+  pageSize: number
+  total: number
 }
 
-export default async function Products() {
-  const res = await getProducts()
+// export async function getProducts() {
+//   const teste = await fetch('/api/products')
+  
+//   console.log("🚀 ~ getProducts ~ teste:", teste)
+//   return teste
+// }
+
+export default async function TableProducts() {
+  // const [products, setProducts] = useState([]);
+  // const [pagination, setPagination] = useState<PageProps>({
+  //   page: 1,
+  //   pageSize: 1,
+  //   total: 0
+  // });
+  
+
+// const a = getProducts()
+// console.log("🚀 ~ TableProducts ~ a:", a)
+
+
+  // useEffect(() => {
+  //   getProducts()
+  // }, []);
 
   return (
-    <>
-      <div className="flex flex-col gap-4 p-4">
-        <h1 className="text-3xl font-bold tracking-tight">Produtos</h1>
-        <div className="space-y-2.5">
+    <div className="space-y-2.5">
           <OrderTableFilters />
 
           <div className="rounded-md border">
@@ -46,7 +59,7 @@ export default async function Products() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {/* {products && products.map((product: any) => {
+                {/* {products.length > 0 && products.map((product: any) => {
                   return <OrderTableRow key={product.id} product={product} />
                 })} */}
               </TableBody>
@@ -55,7 +68,5 @@ export default async function Products() {
 
           {/* <Pagination pageIndex={pagination.page} totalCount={pagination.total} perPage={pagination.pageSize} /> */}
         </div>
-      </div>
-    </>
   )
 }

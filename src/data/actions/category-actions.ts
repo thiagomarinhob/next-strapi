@@ -1,17 +1,19 @@
 import { flattenAttributes, getStrapiURL } from "@/lib/utils";
 import { getAuthToken } from "../services/get-token";
 import qs from 'qs';
+import { getUserMeLoader } from "../services/get-user-me-loader";
 
 const baseUrl = getStrapiURL();
 
-export default async function getCategoryByEstablishment(name: string) {
+export default async function getAllCategory(name?: string) {
   const authToken = await getAuthToken();
+  const user = await getUserMeLoader()
 
   const query = qs.stringify({
     filters: {
       establishment: {
-        name: {
-          $eq: name,
+        id: {
+          $eq: name ? name : user.data.establishment.id,
         },
       },
     },

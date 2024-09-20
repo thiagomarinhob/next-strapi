@@ -1,16 +1,13 @@
-import { deleteProductById } from "@/data/actions/product-actions";
+import { getProductAll } from "@/data/actions/product-actions";
 
-export async function DELETE(request: Request, response: Response) {
-  const {id} = await request.json();
-  console.log("🚀 ~ DELETE ~ id:", id)
-
+export async function GET() {
   try {
-    await deleteProductById(id);
-    return new Response('Success!', {
-    status: 200,
-  })
+    const response = await getProductAll()
+    const data = await response.json()
+    return Response.json(data)
   } catch (error) {
-    return new Response(`Erro ao deletar product ${error}`, {
+    console.log(error);
+    return new Response(`Error: ${error}` , {
       status: 400
     })
   }
